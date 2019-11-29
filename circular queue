@@ -1,0 +1,60 @@
+#include<stdio.h>
+int a[10];
+void main()
+{
+int n,i,item,ch;
+printf("enter the number of elements\n");
+scanf("%d",&n);
+int front=-1,rear=-1;
+do{
+printf("\n 1.add 2.delete 3.display 4.exit\n");
+printf("enter the choice :\n");
+scanf("%d",&ch);
+switch(ch)
+ {
+  case 1:printf("enter the element");
+         scanf("%d",&item);
+         if((front==rear+1)||(front==0 && rear==n-1))
+         printf("the queue is full");
+ 	 else 
+	   {
+	    if(front==-1)front=0;
+ 	    rear=(rear+1)%n;
+            a[rear]=item;
+            printf("\n inserted -> %d",item);
+           }
+         break;
+  case 2:
+         if(front==-1)
+	printf("\n circlar queue is empty! deletion is not possible \n");
+ 	else{
+	     item=a[front];
+	     if(front==rear){
+	     front=-1;
+	     rear=-1;
+	     }
+	    else{
+	      front=(front+1)%n;
+	      }
+       printf("the deleted elment ->%d\n",item);
+       }
+        break;
+ case 3:
+       if(front==-1)
+       printf("\n empty queue");
+       else
+         {
+ 	   printf("the elements in queue are:\n");
+ 	   for(i=front;i!=rear;i=(i+1)%n)
+            {
+		printf("%d\t",a[i]);
+            }
+           printf("%d\t",a[i]);
+            }
+       break;
+ default:
+       printf("\n invalid choice");
+        break;
+  }
+}while(ch!=4);
+}
